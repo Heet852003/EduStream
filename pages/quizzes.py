@@ -1,15 +1,14 @@
 import streamlit as st
 import requests
 
+# Cache the quiz data to reduce API calls
+@st.cache_data(ttl=60)  # Cache for 60 seconds
 def fetch_quiz_questions():
     try:
         url = "https://opentdb.com/api.php?amount=5&type=multiple"
         response = requests.get(url)
         response.raise_for_status()  # Check if the request was successful
         data = response.json()  # Parse the response as JSON
-
-        # Debugging: Print the response to see what's inside
-        st.write("API Response:", data)
 
         # Check if 'results' exists in the response
         if 'results' in data:
@@ -18,8 +17,15 @@ def fetch_quiz_questions():
             st.error("Unexpected response format from the API. Please try again later.")
             return []
 
-    except requests.exceptions.RequestException as e:
-        st.error(f"Failed to fetch quiz questions: {e}")
+    except requests.exceptions.HTTPError as e:
+        if response.status_code == 429:
+            st.error("Too many requests. Please try again in a minute.")
+        else:
+            st.error(f"Failed to fetch quiz questions. Please try again later.")
+        return []
+
+    except Exception as e:
+        st.error("An unexpected error occurred. Please try again later.")
         return []
 
 def show_quizzes_page():
