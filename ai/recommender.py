@@ -1,7 +1,7 @@
 import openai
 import streamlit as st
 
-OPENAI_API_KEY = st.secrets["sk-G1dYqIsLeDbHutqc_raM0UKUwey5QphAD4GqknWQy6T3BlbkFJnSAvfp_vJi6tZ8PhW76tlzwMRrcUBW-bQ0qatEfUMA"]
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 openai.api_key = OPENAI_API_KEY
 
 def get_recommendations(user_data):
