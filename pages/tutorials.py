@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 YOUTUBE_API_KEY = st.secrets["YOUTUBE_API_KEY"]
-YOUTUBE_CHANNEL_ID = "YOUR_CHANNEL_ID"
+YOUTUBE_CHANNEL_ID = "khanacademy"
 
 def fetch_youtube_videos(channel_id, api_key):
     url = f"https://www.googleapis.com/youtube/v3/search?key={api_key}&channelId={channel_id}&part=snippet,id&order=date&maxResults=5"
