@@ -7,5 +7,5 @@ font = "sans serif"
 
 [server]
 headless = true
-port = "${PORT}"  # Correctly use the TOML format for environment variables
+port = 8501  # Default port, will be overridden in cloud deployment
 enableCORS = false
