@@ -8,7 +8,7 @@ def get_recommendations(user_data):
     prompt = f"Generate learning recommendations for a {user_data['learning_style']} learner interested in {', '.join(user_data['preferred_topics'])}."
     
     response = openai.Completion.create(
-        engine="text-davinci-002",  # This model should be available in version 0.27.0
+        engine="text-curie-001",  # Using text-curie-001 model
         prompt=prompt,
         max_tokens=100,
         n=1,
