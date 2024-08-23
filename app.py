@@ -8,7 +8,7 @@ from ai.recommender import get_recommendations
 def apply_custom_css():
     st.markdown('<style>' + open('static/css/styles.css').read() + '</style>', unsafe_allow_html=True)
 
-#apply_custom_css()
+apply_custom_css()
 
 # Main Page Layout
 def main():
