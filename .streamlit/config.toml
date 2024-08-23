@@ -7,5 +7,5 @@ font = "sans serif"
 
 [server]
 headless = true
-port = $PORT
+port = "${PORT}"  # Correctly use the TOML format for environment variables
 enableCORS = false
