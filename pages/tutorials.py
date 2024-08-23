@@ -9,9 +9,6 @@ def fetch_youtube_videos(channel_id, api_key):
         response.raise_for_status()  # Check if the request was successful
         data = response.json()
 
-        # Debugging: Check the structure of the response
-        # st.write("YouTube API Response:", data)
-
         # Check if 'items' exists in the response
         if 'items' in data:
             videos = []
@@ -32,6 +29,8 @@ def fetch_youtube_videos(channel_id, api_key):
             st.error("Access to the YouTube API was denied. Please check your API key.")
         elif response.status_code == 429:
             st.error("Too many requests to the YouTube API. Please try again later.")
+        elif response.status_code == 400:
+            st.error("Bad Request. Please check the channel ID and API key.")
         else:
             st.error(f"Failed to fetch videos: {e}")
         return []
@@ -44,9 +43,9 @@ def show_tutorials_page():
     st.title("Video Tutorials")
     st.markdown("### Latest Tutorials")
 
-    # Replace with your YouTube API key and channel ID
+    # Replace with your YouTube API key and a known valid channel ID for testing
     YOUTUBE_API_KEY = st.secrets["YOUTUBE_API_KEY"]
-    YOUTUBE_CHANNEL_ID = "khanacademy"  # Replace with your actual YouTube Channel ID
+    YOUTUBE_CHANNEL_ID = "UC4a-Gbdw7vOaccHmFo40b9g"  # Known valid Channel ID for Khan Academy
 
     videos = fetch_youtube_videos(YOUTUBE_CHANNEL_ID, YOUTUBE_API_KEY)
 
