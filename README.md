@@ -8,9 +8,8 @@ EduStream is a personalized learning platform designed to provide free and affor
 2. [Demo](#demo)
 3. [Installation](#installation)
 4. [Usage](#usage)
-5. [Project Structure](#project-structure)
-6. [Contributing](#contributing)
-7. [License](#license)
+5. [Contributing](#contributing)
+6. [Additional Notes](#additonal)
 
 ## ✨ Features
 
