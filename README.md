@@ -1,102 +1,64 @@
-# EduStream 📚💻
+<p align="center">
+  <img src="static/images/logo.png" width="100" alt="EduStream logo" />
+</p>
 
-EduStream is a personalized learning platform designed to provide free and affordable educational resources to underserved communities. The application leverages AI to recommend customized learning paths based on user preferences.
+<h1 align="center">EduStream</h1>
+<p align="center"><b>A free learning platform: video tutorials, quizzes, and peer forums in one Streamlit app.</b></p>
 
-## 📋 Table of Contents
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/python-3.8+-3776AB?logo=python&logoColor=white">
+  <img alt="Streamlit" src="https://img.shields.io/badge/app-Streamlit-FF4B4B?logo=streamlit&logoColor=white">
+  <a href="https://edustream-jjsajdx7oxaqm7sa2m7thn.streamlit.app/"><img alt="Live demo" src="https://img.shields.io/badge/demo-live-brightgreen"></a>
+</p>
 
-1. [Features](#features)
-2. [Demo](#demo)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Contributing](#contributing)
-6. [Additional Notes](#additonal)
+EduStream pulls together three real external services into one page:
+YouTube for tutorials, the Open Trivia Database for quizzes, and Disqus
+for discussion, so a learner has content, self-testing, and a place to
+ask questions without leaving the app.
 
-## ✨ Features
+## Features
 
-- **Personalized Learning Paths**: Get course recommendations tailored to your learning style and preferences.
-- **Interactive Tutorials**: Access a variety of tutorials across multiple subjects.
-- **Quizzes and Forums**: Test your knowledge with quizzes and engage with peers in forums.
-- **AI-Powered Recommendations**: Use machine learning to generate personalized learning recommendations.
+- **Tutorials**: pulls the latest videos from a YouTube channel via the
+  YouTube Data API and embeds them in-app.
+- **Quizzes**: fetches multiple-choice questions from the
+  [Open Trivia DB](https://opentdb.com/) API, cached for a minute to
+  avoid hitting rate limits.
+- **Forums**: a Disqus thread embedded per page for peer discussion.
+- **Personalized learning**: a recommendation stub
+  (`ai/recommender.py`) that takes a user's stated learning style and
+  topics and suggests what to study next. It's currently a rule-based
+  placeholder rather than a trained model, an intentional extension
+  point for plugging in a real recommender later.
 
-## 🌐 Demo
+## Try it live
 
-Check out the live demo of EduStream [here](https://edustream-jjsajdx7oxaqm7sa2m7thn.streamlit.app/).
+[edustream-jjsajdx7oxaqm7sa2m7thn.streamlit.app](https://edustream-jjsajdx7oxaqm7sa2m7thn.streamlit.app/)
 
-## 🛠️ Installation
+## Running it locally
 
-To run EduStream locally, follow these steps:
+```bash
+git clone https://github.com/Heet852003/EduStream.git
+cd EduStream
+python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-1. **Clone the repository**:
+Open http://localhost:8501 and use the sidebar to switch between
+Tutorials, Quizzes, Forums, and Personalized Learning.
 
-    ```bash
-    git clone https://github.com/Heet852003/EduStream.git
-    cd EduStream
-    ```
+## Repository layout
 
-2. **Set up a virtual environment** (optional but recommended):
+```
+app.py              page routing and the home/personalized-learning views
+pages/tutorials.py   YouTube Data API integration
+pages/quizzes.py     Open Trivia DB integration
+pages/forums.py      Disqus embed
+ai/recommender.py    the learning-path recommendation stub
+static/              CSS and images
+```
 
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
+## Contributing
 
-3. **Install dependencies**:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **Run the application**:
-
-    ```bash
-    streamlit run app.py
-    ```
-
-## 🚀 Usage
-
-After starting the application, open your web browser and navigate to `http://localhost:8501`. You will see the EduStream homepage where you can:
-
-- Use the sidebar to navigate between **Tutorials**, **Quizzes**, **Forums**, and **Personalized Learning**.
-- Select "Personalized Learning" to view AI-generated recommendations tailored to your preferences.
-
-
-
-## 🤝 Contributing
-
-We welcome contributions to EduStream! To contribute, please follow these steps:
-
-1. **Fork the repository**.
-2. **Create a new branch** for your feature or bugfix:
-
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-
-3. **Commit your changes** with a clear message:
-
-    ```bash
-    git commit -m "Add new feature: your-feature-name"
-    ```
-
-4. **Push to your forked repository**:
-
-    ```bash
-    git push origin feature/your-feature-name
-    ```
-
-5. **Create a Pull Request** from your branch into the main repository.
-
-
----
-
-### 📌 Additional Notes
-
-- **Clearing Cache**: If you encounter issues with outdated data, you can clear the Streamlit cache by running `streamlit cache clear` or by using the "Clear cache" button in the Streamlit app settings.
-- **Custom CSS and Images**: Ensure that the `static/css/styles.css` and `static/images/logo.png` files are correctly placed in the `static` directory. You may customize these files to suit your needs.
-- **AI Recommender**: The AI recommender logic is found in `ai/recommender.py`. You can adjust the recommendation engine by modifying this file.
-
----
-
-Thank you for using **EduStream**! We hope this platform enhances your learning experience. 🎓🌟
-
-
+Fork the repo, branch, commit, and open a pull request, standard GitHub
+flow.
